@@ -12,59 +12,98 @@ namespace Empleados
     }
     public class Empleado
     {
-        private string nombre;
+        private string _nombre;
 
         public string Nombre
         {
-            get{return nombre;}
-            set{nombre =value;}
+            get{return _nombre;}
+            set{_nombre =value;}
         }
-        private string apellido;
+        private string _apellido;
 
         public string Apellido
         {
-            get{return apellido;}
-            set{apellido=value;}
+            get{return _apellido;}
+            set{_apellido=value;}
         }
 
-        private DateTime fechaNacimiento;
+        private DateTime _fechaNacimiento;
 
         public DateTime FechaNacimiento
         {
-            get{return fechaNacimiento;}
-            set{fechaNacimiento =value;}
+            get{return _fechaNacimiento;}
+            set{_fechaNacimiento =value;}
         }
 
-        private DateTime fechaIngreso;
+        private DateTime _fechaIngreso;
 
         public DateTime FechaIngreso
         {
-            get{return fechaIngreso;}
-            set{fechaIngreso =value;}
+            get{return _fechaIngreso;}
+            set{_fechaIngreso =value;}
         }
 
-        private char estado;
+        private char _estado;
 
         public char Estado
         {
-            get{return estado;}
-            set{estado = value;}
+            get{return _estado;}
+            set{_estado = value;}
         }
 
-        private double sueldo;
+        private double _sueldo;
 
         public double Sueldo
         {
-            get{return sueldo;}
-            set{sueldo = value;}
+            get{return _sueldo;}
+            set{_sueldo = value;}
         }
 
-        private cargos cargo;
+        private cargos _cargo;
 
         public cargos Cargo
         {
-            get{return cargo;}
-            set{cargo=value;}
+            get{return _cargo;}
+            set{_cargo=value;}
+        }
+
+
+        //punto 2a
+
+        public int Edad()
+        {
+            int edad= DateTime.Now.Year - FechaNacimiento.Year;
+
+            if (DateTime.Now < FechaNacimiento.AddYear(edad))
+            {
+                edad--;
+            }
+            return edad;
+        }
+
+        public int Antiguedad()
+        {
+            int antiguedad=DateTime.Now.Year - FechaIngreso.Year;
+
+            if (DateTime.Now < FechaIngreso.AddYears(antiguedad))
+            {
+                antiguedad--;
+            }
+            return antiguedad;
+        }
+
+        public Añosfaltantes()
+        {
+            int faltan=65 - Edad;
+
+            if (faltan > 0)
+            {
+                return faltan;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
 
