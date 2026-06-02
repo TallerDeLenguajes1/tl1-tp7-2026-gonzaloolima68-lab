@@ -1,51 +1,75 @@
-﻿using EspacioCalculadora;
+﻿using System;
+using Espaciocalculadora;
 
-string? opcion ;
-
-Calculadora calculadora1=new Calculadora();
-do
+namespace tp7
 {
-    Console.WriteLine("1=Sumar -- 2 = Restar -- 3 = Multiplicar -- 4 = Dividir -- 0=finalizar"); 
-    string opcion=Console.ReadLine();
-
-    if(opcion!="0"){
-        Console.WriteLine("ingrese el los dos numeros");
-
-        if(double.TryParseryParse(Console.ReadLine(),out double numero1) && double.TryParse(Console.ReadLine(),out double numero2)){
-            calculadora1.setdato(numero1);
-            switch (opcion)
+    class Program
+    {
+        static void Main(string[] args)
         {
-            case "1": 
-                    calculadora1.suma(numero2);
-                    Console.WriteLine("suma ="+calculadora1.getdato());
-            break;
-            case "2": 
-                    calculadora1.resta(numero2);
-                    Console.WriteLine("resta ="+calculadora1.getdato());
-            break;
-            case "3": 
-                    calculadora1.multiplicar(numero2);
-                    Console.WriteLine("multiplicacion ="+calculadora1.getdato());
-            break;
-            case "4": 
-                    calculadora1.dividir(numero2);
-                    Console.WriteLine("division ="+calculadora1.getdato());
-            break;
-            default:
-                    opcion="0";
-            break;
+            Calculadora micalculadora = new Calculadora();
+
+            string? opcion;
+
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("Resultado =" + micalculadora.resultado);
+                Console.WriteLine("ingrese la operacion a realizar");
+                Console.WriteLine("1-Sumar");
+                Console.WriteLine("2-Restar");
+                Console.WriteLine("3-Multiplicar");
+                Console.WriteLine("4-Dividir");
+                Console.WriteLine("5-Borrar");
+                Console.WriteLine("0-Finalizar");
+
+                opcion = Console.ReadLine();
+
+                if (int.TryParse(opcion, out int opcion2))
+                {
+                    if (opcion2 >= 1 && opcion2 < 5)
+                    {
+                        string numtexto;
+                        Console.WriteLine();
+                        Console.WriteLine("Ingrese un numero");
+                        numtexto = Console.ReadLine()!;
+                        if (double.TryParse(numtexto, out double numero))
+                        {
+                            switch (opcion2)
+                            {
+                                case 1:
+                                    micalculadora.sumar(numero);
+                                    break;
+                                case 2:
+                                    micalculadora.restar(numero);
+                                    break;
+                                case 3:
+                                    micalculadora.multiplicar(numero);
+                                    break;
+                                case 4:
+                                    micalculadora.dividir(numero);
+                                    break;
+                            }
+                        }
+                    }
+                    else if (opcion == "5")
+                    {
+                        micalculadora.limpiar();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Finalizando operacion");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("numero invalida");
+                    opcion = "0";
+                }
+
+            } while (opcion != "0");
         }
-        }else{
-        opcion="0";
+
     }
-        
-    }else{
-        opcion="0";
-    }
-} while (opcion!= "0");
-
-
-
-
-
-Console.WriteLine("suma ="+calculadora1.getdato());
+}
